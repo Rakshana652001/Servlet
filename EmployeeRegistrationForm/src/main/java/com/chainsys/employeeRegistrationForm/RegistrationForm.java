@@ -1,6 +1,8 @@
 package com.chainsys.employeeRegistrationForm;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,9 +33,30 @@ public class RegistrationForm extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String dob = request.getParameter("dob");
+		String gender = request.getParameter("gender");
 		long phoneNumber = Long.parseLong("phoneNumber");
 		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String rePassword = request.getParameter("rePassword");
 		String city = request.getParameter("city");
+		int pincode = Integer.parseInt(request.getParameter("pincode"));
+		String state = request.getParameter("state");
+		String nationality = request.getParameter("nationality");
+		
+		PrintWriter out = response.getWriter(); 
+		out.print("id");
+		out.print("name");
+		out.print("dob");
+		out.print("gender");
+		out.print("phonenumber");
+		out.print("password");
+		out.print("rePassword");
+		out.print("name");
+		out.print("city");
+		out.print("state");
+		out.print("nationality");
+		out.print("pincode");
+		
 		
 	}
 

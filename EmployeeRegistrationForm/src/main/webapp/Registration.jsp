@@ -5,30 +5,39 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Form</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="Registration.css" rel="stylesheet">
 </head>
 <body>
-	<form>
-		<lable>Employee Id:</lable>
-		<input type="number" name="id" max-length="4" required/>
-		<lable>Employee Name: </lable>
-		<input type="text" name="name" required/>
+	<form action="">
+	
+		<label><span>Employee Id:</span></label>
+		<input type="number" name="id" class="employeeId" maxlength="4" required/><br><br>
+		<label><span>Employee Name:</span></label>
+		<input type="text" name="name" required/><br><br>
 		<label>Date Of Birth:</label>
-		<input type="date" name="dob" required/>
-		<lable>Phone Number: </lable>
-		<input type="tel" name="phoneNumber" max-length="10" required/>
-		<lable>Email ID: </lable>
-		<input type="email" name="email" required/>
-		<lable>City: </lable>
-		<input type="text" name="city" required/>
-		<lable>Pin Code:</lable>
-		<input type="text" name="pincode" max-lenghth ="6" required/>
-		<lable>State: </lable>
-		<input type="text" name="state" required/>
-		<lable>Nationality: </lable>
-		<input type="text" name="nationality" required/>
-		<lable></lable>
-		
+		<input type="date" name="dob" required/><br><br>
+		<label>Gender: </label>
+		<label>M <input type="radio" name="gender" required/></label>
+		<label>F <input type="radio" name="gender" required/></label>
+		<label>Other <input type="radio" name="gender" required/></label><br><br>
+		<label>Phone Number: </label>
+		<input type="tel" name="phoneNumber" maxlength="10" required/><br><br>
+		<label>Email ID: </label>
+		<input type="email" name="email" required/><br><br>
+		<label>Create Password: </label>
+		<input type="password" name="password" required/><br><br>
+		<label>Re-Enter Password: </label>
+		<input type="password" name="rePassword" required/><br><br>
+		<label>City: </label>
+		<input type="text" name="city" required/><br><br>
+		<label>Pin Code:</label>
+		<input type="text" name="pincode" maxlength="6" required/><br><br>
+		<label>State: </label>
+		<input type="text" name="state" required/><br><br>
+		<label>Nationality: </label>
+		<input type="text" name="nationality" required/><br><br>
+		<button class="btn btn-outline-dark">Submit</button>
 	</form>
-
 </body>
 </html>
