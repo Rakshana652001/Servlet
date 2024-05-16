@@ -1,13 +1,21 @@
-package com.chainsys.employeeRegistrationForm;
+package com.chainsys.dao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.chainsys.model.Employee;
+import com.chainsys.model.UserArrayList;
 
 /**
  * Servlet implementation class RegistrationForm
@@ -15,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/RegistrationForm")
 public class RegistrationForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private ArrayList<Employee> list = new ArrayList<Employee>();
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,7 +43,7 @@ public class RegistrationForm extends HttpServlet {
 		String name = request.getParameter("name");
 		String dob = request.getParameter("dob");
 		String gender = request.getParameter("gender");
-		long phoneNumber = Long.parseLong("phoneNumber");
+		int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String rePassword = request.getParameter("rePassword");
@@ -43,22 +52,18 @@ public class RegistrationForm extends HttpServlet {
 		String state = request.getParameter("state");
 		String nationality = request.getParameter("nationality");
 		
-		PrintWriter out = response.getWriter(); 
-		out.print("id");
-		out.print("name");
-		out.print("dob");
-		out.print("gender");
-		out.print("phonenumber");
-		out.print("password");
-		out.print("rePassword");
-		out.print("name");
-		out.print("city");
-		out.print("state");
-		out.print("nationality");
-		out.print("pincode");
-		
+		PrintWriter out = response.getWriter(); 		
+		System.out.println("Do get");
+
+		list.add(new Employee(id, name, dob,gender, phoneNumber, email, password, rePassword, city, pincode, state, nationality));
+        request.setAttribute("list", list);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("table.jsp");
+        dispatcher.forward(request, response);
 		
 	}
+		
+		
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

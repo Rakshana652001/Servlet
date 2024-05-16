@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +8,18 @@
 <link href="Registration.css" rel="stylesheet">
 </head>
 <body>
-	<form action="">
+	<form action="RegistrationForm" method="get">
 	
 		<label><span>Employee Id:</span></label>
-		<input type="number" name="id" class="employeeId" maxlength="4" required/><br><br>
+		<input type="text" name="id" class="employeeId" maxlength="4" required/><br><br>
 		<label><span>Employee Name:</span></label>
 		<input type="text" name="name" required/><br><br>
 		<label>Date Of Birth:</label>
 		<input type="date" name="dob" required/><br><br>
 		<label>Gender: </label>
-		<label>M <input type="radio" name="gender" required/></label>
-		<label>F <input type="radio" name="gender" required/></label>
-		<label>Other <input type="radio" name="gender" required/></label><br><br>
+		<label>M <input type="radio" name="gender" value="Male" required/></label>
+		<label>F <input type="radio" name="gender" value="Female" required/></label>
+		<label>Other <input type="radio" name="gender" value="Other" required/></label><br><br>
 		<label>Phone Number: </label>
 		<input type="tel" name="phoneNumber" maxlength="10" required/><br><br>
 		<label>Email ID: </label>
@@ -39,5 +38,6 @@
 		<input type="text" name="nationality" required/><br><br>
 		<button class="btn btn-outline-dark">Submit</button>
 	</form>
+	<a href="RegistrationFormTable">Registration Table</a>
 </body>
 </html>
