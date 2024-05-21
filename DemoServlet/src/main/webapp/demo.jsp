@@ -8,11 +8,9 @@
 </head>
 <body>
 	<form action="DemoServlet" method="post">
-		Enter EmployeeID:   <input type="number" name="id" pattern="//d{4}"><br><br>
 		Enter Name:         <input type="text" name="name"><br><br>
-		Enter Phone Number: <input type="number" name="number"><br><br>
-		Date of Birth:      <input type="date" name="date">
-		Enter Department:   <input type="text" name="department"><br><br>
+		Enter Phone Number  <input type="tel" name = "phoneNumber"><br><br>
+		Enter EmailId:      <input type="email" name="emailID"><br><br>
 		<input type="submit" name="click">
 	</form>
 </body>

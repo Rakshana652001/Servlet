@@ -9,12 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.DemoImplementation;
+import com.chainsys.model.Demo;
+
 /**
  * Servlet implementation class DemoServlet1
  */
 @WebServlet("/DemoServlet")
 public class DemoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Demo demo = new Demo();
+	DemoImplementation demoImplementation = new DemoImplementation();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,18 +37,30 @@ public class DemoServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("Do get");
 		
-		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
-		String date = request.getParameter("date");
-		int number = Integer.parseInt(request.getParameter("number"));
-		String department = request.getParameter("department");
+		demo.setName(name);
+		String emailID = request.getParameter("emailID");
+		demo.setEmailID(emailID);
+		String phoneNumber = request.getParameter("phoneNumber");
+		demo.setPhoneNumber(phoneNumber);
 		
-		PrintWriter out = response.getWriter();
-		out.println(id);
-		out.println(name);
-		out.println(date);
-		out.println(number);
-		out.println(department);
+		try {
+			PrintWriter out = response.getWriter();
+			out.println(demo.getName()+"Inserted");
+			out.println(demo.getEmailID());
+			out.println(demo.getPhoneNumber());
+			demoImplementation.saveDetails(demo);
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+		
+		
+		
+		
 		
 	}
 
