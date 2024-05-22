@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form action="DemoServlet" method="post">
-		Enter Name:         <input type="text" name="name"><br><br>
-		Enter Phone Number  <input type="tel" name = "phoneNumber"><br><br>
-		Enter EmailId:      <input type="email" name="emailID"><br><br>
+		Enter Name:         <input type="text" name="name" required/><br><br>
+		Enter EmailId:      <input type="email" name="emailID" required/><br><br>
+		Enter Phone Number  <input type="tel" name = "phoneNumber" required/><br><br>
 		<input type="submit" name="click">
 	</form>
 </body>
