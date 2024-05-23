@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,8 @@ public class DemoImplementation implements DemoInterface
 	static Scanner scan = new Scanner(System.in);
 	Demo demo = new Demo();
 	private List<Demo> list = new ArrayList<Demo>();
-	static DemoImplementation demoImplementation = new DemoImplementation();
+	ArrayList<String> nameCheck = new ArrayList<String>();
+
 
 	@Override
 	public void saveDetails(Demo demo) throws ClassNotFoundException, SQLException 
@@ -35,7 +37,6 @@ public class DemoImplementation implements DemoInterface
 	@Override
 	public List<Demo> retriveDetails(Demo demo) throws ClassNotFoundException, SQLException 
 	{
-		
 		try
 		{
 			Connection getConnection = JdbcConnection.getConnection();
@@ -56,75 +57,94 @@ public class DemoImplementation implements DemoInterface
 			System.out.println(e);
 		}
 		return list;
-		
 	}
 
 	
 	@Override
-	public List<Demo> deleteDetails(Demo demo) throws ClassNotFoundException, SQLException
+	public void deleteDetails(Demo demo) throws ClassNotFoundException, SQLException
 	{
 			Connection getConnection = JdbcConnection.getConnection();
-			System.out.println("Enter the Name to delete: ");
-			name = scan.next();
-			String selectName = "select name from demo";
-			PreparedStatement prepareStatement = getConnection.prepareStatement(selectName);
-			ResultSet resultSet = prepareStatement.executeQuery();
-			while(resultSet.next())
-			{
+//			System.out.println("Enter the Name to delete: ");
+//			name = scan.next();
+//			String selectName = "select name from demo";
+//			PreparedStatement prepareStatement = getConnection.prepareStatement(selectName);
+//			ResultSet resultSet = prepareStatement.executeQuery();
+//			while(resultSet.next())
+//			{
+//				String name = resultSet.getString(1);
+//				nameCheck.add(name);
+//			}
+//			if(nameCheck.contains(name))
+//			{
 				String delete = "delete from demo where name=?";
 				PreparedStatement prepareStatement2 = getConnection.prepareStatement(delete);
 				prepareStatement2.setString(1, name);
-				prepareStatement2.executeUpdate();
-			
-			}
-			System.out.println("\nDeleted successfully.");
-			return list;
+				prepareStatement2.executeUpdate();			
+				System.out.println("\nDeleted successfully.");
+			//}
+//			else
+//			{
+//				System.out.println("No such name in list");
+//			}
+//				
 	}
 
 	
+	
 	@Override
-	public List<Demo> updateDetails(Demo demo) throws SQLException, ClassNotFoundException 
+	public void updateDetails(Demo demo) throws SQLException, ClassNotFoundException 
 	{
 		Connection getConnection = JdbcConnection.getConnection();
-		System.out.println("Enter your Name for update: ");
-		name = scan.next();
-		String selectName = "select name from demo";
-		PreparedStatement prepareStatement = getConnection.prepareStatement(selectName);
-		ResultSet resultSet = prepareStatement.executeQuery();
-		System.out.println("Enter Changing phoneNumber: ");
-		String numberChange = scan.next();
-		while(resultSet.next())
-		{
+//		System.out.println("Enter your Name for update: ");
+//		name = scan.next();
+//		String selectName = "select name from demo";
+//		PreparedStatement prepareStatement = getConnection.prepareStatement(selectName);
+//		ResultSet resultSet = prepareStatement.executeQuery();
+//		while(resultSet.next())
+//		{
+//			String name = resultSet.getString(1);
+//			nameCheck.add(name);
+//		}
+//		if(nameCheck.contains(name))
+//		{
+			System.out.println("Enter Changing phoneNumber: ");
+			String numberChange = scan.next();
+				String update = "update demo set phoneNumber = ? where name =?";
+				PreparedStatement prepareStatement1 = getConnection.prepareStatement(update);
+				prepareStatement1.setString(1, numberChange);
+				prepareStatement1.setString(2, name);
+				prepareStatement1.executeUpdate();
 			
-			String update = "update demo set phoneNumber = ? where name =?";
-			PreparedStatement prepareStatement1 = getConnection.prepareStatement(update);
-			prepareStatement1.setString(1, numberChange);
-			prepareStatement1.setString(2, name);
-			prepareStatement1.executeUpdate();
-		
-		}
-		System.out.println("\nUpdated successfully.");
-		
-		return list;
+				System.out.println("\nUpdated successfully.");
+//		}
+//		else
+//		{
+//			System.out.println("No Such Names in list");
+//		}
+//	
+//		
+//		
+//		return list;
 	}
 
 	@Override
-	public void nameCheck() throws ClassNotFoundException, SQLException
+	public Collection<?> nameCheck() throws ClassNotFoundException, SQLException
 	{
 		Connection getConnection = JdbcConnection.getConnection();
 		System.out.println("Enter your Name: ");
 		name = scan.next();
-			
-			String selectName = "select name from demo";
-			PreparedStatement prepareStatement = getConnection.prepareStatement(selectName);
-			ResultSet resultSet = prepareStatement.executeQuery();
-			while(resultSet.next())
-			{
-				demo.setName(name);
-				demo.getName();
-				list.add(demo);
-			}
+		String selectName = "select name from demo";
+		PreparedStatement prepareStatement = getConnection.prepareStatement(selectName);
+		ResultSet resultSet = prepareStatement.executeQuery();
+		while(resultSet.next())
+		{
+			String name = resultSet.getString(1);
+			nameCheck.add(name);
+		}
+		return list;
 		
 	}
+
+	
 
 }

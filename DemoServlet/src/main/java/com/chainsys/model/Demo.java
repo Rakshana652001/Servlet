@@ -1,6 +1,5 @@
 package com.chainsys.model;
 
-import java.sql.ResultSet;
 
 public class Demo 
 {
@@ -18,7 +17,8 @@ public class Demo
 		
 	}
 	
-	public Demo(ResultSet resultSet) {
+	
+	public Demo(String phoneNumber2) {
 		// TODO Auto-generated constructor stub
 	}
 	public String getName() {
@@ -43,5 +43,6 @@ public class Demo
 	public String toString() {
 		return "Demo [name=" + name + ", emailID=" + emailID + ", phoneNumber=" + phoneNumber + "]";
 	}
+	
 	
 }

@@ -2,9 +2,6 @@ package com.chainsys.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.chainsys.dao.DemoImplementation;
 import com.chainsys.model.Demo;
-import com.chainsys.util.JdbcConnection;
 
 /**
  * Servlet implementation class DemoServlet1
@@ -25,10 +21,12 @@ import com.chainsys.util.JdbcConnection;
 @WebServlet("/DemoServlet")
 public class DemoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Demo demo = new Demo();
 	DemoImplementation demoImplementation = new DemoImplementation();
 	List<Demo> list = new ArrayList<Demo>(); 
+	Demo demo = new Demo();
+
        
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,10 +38,11 @@ public class DemoServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("Do get");
+		System.out.println("Do get");		
 		
 		String name = request.getParameter("name");
 		demo.setName(name);
@@ -59,9 +58,6 @@ public class DemoServlet extends HttpServlet {
 			out.println(demo.getName()+"Inserted");
 			out.println(demo.getEmailID());
 			out.println(demo.getPhoneNumber());
-			demoImplementation.saveDetails(demo);
-			
-			
 			
 			List<Demo> list = demoImplementation.retriveDetails(demo);
 
@@ -70,11 +66,12 @@ public class DemoServlet extends HttpServlet {
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("DemoTable.jsp");
 	        dispatcher.forward(request, response);
 	        System.out.println(list);
+	        
+	        demoImplementation.saveDetails(demo);
 			
-			//demoImplementation.deleteDetails(demo);
+//			demoImplementation.deleteDetails(demo);
 			
-			//demoImplementation.updateDetails(demo);
-			
+	        demoImplementation.updateDetails(demo);
 			
 			
 		}

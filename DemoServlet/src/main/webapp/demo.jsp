@@ -5,13 +5,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Demo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="demo.css" rel="stylesheet">
 </head>
 <body>
 	<form action="DemoServlet" method="post">
-		Enter Name:         <input type="text" name="name" required/><br><br>
-		Enter EmailId:      <input type="email" name="emailID" required/><br><br>
-		Enter Phone Number  <input type="tel" name = "phoneNumber" required/><br><br>
-		<input type="submit" name="click">
+		<label>Enter Name:         <input type="text" name="name" class="employeeId" required/></label><br><br>
+		<label>Enter EmailId:      <input type="email" name="emailID" required/></label><br><br>
+		<label>Enter Phone Number: <input type="tel" name = "phoneNumber" required/></label><br><br>
+		<button class="btn btn-outline-dark">Submit</button>
 	</form>
 </body>
 </html>
