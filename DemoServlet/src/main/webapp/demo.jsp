@@ -9,7 +9,8 @@
 <link href="demo.css" rel="stylesheet">
 </head>
 <body>
-	<form action="DemoServlet" method="post">
+	<form action="DemoServlet" method="
+">
 		<label>Enter Name:         <input type="text" name="name" class="employeeId" required/></label><br><br>
 		<label>Enter EmailId:      <input type="email" name="emailID" required/></label><br><br>
 		<label>Enter Phone Number: <input type="tel" name = "phoneNumber" required/></label><br><br>

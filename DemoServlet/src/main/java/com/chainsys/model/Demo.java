@@ -16,11 +16,7 @@ public class Demo
 		this.phoneNumber = phoneNumber;
 		
 	}
-	
-	
-	public Demo(String phoneNumber2) {
-		// TODO Auto-generated constructor stub
-	}
+
 	public String getName() {
 		return name;
 	}
