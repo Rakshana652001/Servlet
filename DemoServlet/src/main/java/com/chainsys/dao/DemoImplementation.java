@@ -89,7 +89,25 @@ public class DemoImplementation implements DemoInterface
 				System.out.println(executeUpdate);
 	}
 
-	
+	public void searchDetails() throws ClassNotFoundException, SQLException
+	{
+		Connection getConnection = JdbcConnection.getConnection();
+		
+		ArrayList<Demo> searchDetails  = new ArrayList<Demo>();
+		String search = "select name, emailID, phoneNumber from demo where name=?";
+		
+		PreparedStatement preparedStatement = getConnection.prepareStatement(search);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while(resultSet.next())
+		{
+			preparedStatement.setString(1, demo.getName());
+			preparedStatement.setString(2, demo.getEmailID());
+			preparedStatement.setString(3, demo.getPhoneNumber());
+			
+			preparedStatement.setString(4, demo.getName());
+		}
+		
+	}
 
 	
 
