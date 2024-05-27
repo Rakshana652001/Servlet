@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.chainsys.dao.DemoImplementation;
 import com.chainsys.model.Demo;
@@ -32,7 +33,7 @@ public class DemoServlet extends HttpServlet {
      */
     public DemoServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
@@ -44,27 +45,45 @@ public class DemoServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("Do get");		
 		
-		String name = request.getParameter("name");
-		demo.setName(name);
-		String emailID = request.getParameter("emailID");
-		demo.setEmailID(emailID);
-		String phoneNumber = request.getParameter("phoneNumber");
-		demo.setPhoneNumber(phoneNumber);
+//		String name = request.getParameter("name");
+//		demo.setName(name);
+//		String emailID = request.getParameter("emailID");
+//		demo.setEmailID(emailID);
+//		String phoneNumber = request.getParameter("phoneNumber");
+//		demo.setPhoneNumber(phoneNumber);
 		PrintWriter out = response.getWriter();
-		out.println(demo.getName()+"Inserted");
-		out.println(demo.getEmailID());
-		out.println(demo.getPhoneNumber());
 		
-		try
+		HttpSession session = request.getSession(false);
+		if(session!=null)
 		{
-			demoImplementation.saveDetails(demo);
+			String name = request.getParameter("name");
+			demo.setName(name);
+			String emailID = request.getParameter("emailID");
+			demo.setEmailID(emailID);
+			String phoneNumber = request.getParameter("phoneNumber");
+			demo.setPhoneNumber(phoneNumber);
+			
+			
+			out.println(demo.getName()+"Inserted");
+			out.println(demo.getEmailID());
+			out.println(demo.getPhoneNumber());
+			
+			try
+			{
+				demoImplementation.saveDetails(demo);
+			}
+	        catch(Exception e)
+			{
+	        	System.out.println(e);
+			}
+			retrive(request,response);
+			
 		}
-        catch(Exception e)
+		else
 		{
-        	System.out.println(e);
+			response.sendRedirect("Login.jsp");
 		}
-		retrive(request,response);
-		
+		out.print("<a href='Login.jsp'>Back to home</a>");
 		
 	}
 
@@ -81,18 +100,15 @@ public class DemoServlet extends HttpServlet {
 	        request.setAttribute("list", list);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("DemoTable.jsp");
 	        dispatcher.forward(request, response);
-	        System.out.println(list);
-	        
-	        
-	        
-	      //demoImplementation.updateDetails(demo);
-			
+	        System.out.println(list);			
 		}
 		catch(Exception e)
 		{
 			System.out.println(e);
 		}
 	}
+	
+	
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

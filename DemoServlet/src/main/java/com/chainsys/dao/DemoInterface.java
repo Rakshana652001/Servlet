@@ -11,4 +11,5 @@ public interface DemoInterface
 	List<Demo> retriveDetails(Demo demo)throws ClassNotFoundException, SQLException;
 	void deleteDetails(Demo demo) throws ClassNotFoundException, SQLException;
 	void updateDetails(Demo demo) throws SQLException, ClassNotFoundException;
+	List<Demo> searchDetails(Demo demo)throws SQLException, ClassNotFoundException;
 }
